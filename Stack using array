@@ -1,0 +1,83 @@
+#include<iostream>
+#define MAX 10
+using namespace std;
+
+class queue
+{
+	public:
+	int q[MAX],front,rear;
+	queue()
+	{
+		front=-1;
+		rear=-1;
+	}
+	void enqueue(int n)
+	{
+    	if(rear==MAX-1)
+		{
+        	cout<<"STACK overflow."<<endl;
+    	}
+    	else
+    	{
+    		front=0;
+    		++rear;
+    		q[rear]=n;
+    		cout<<n<<" has been inserted."<<endl;
+    	}
+	}
+	void dequeue()
+	{
+    	int temp;
+    	if(front==-1)
+		{
+        	cout<<"queue underflow."<<endl;
+    	}
+		else
+		{
+			temp=q[front];
+    		front=front+1;
+    		cout<<temp<<" has been deleted."<<endl;
+		}     
+	}
+	void display()
+	{
+    	int i;
+    	cout<<"Queue is ";
+    	if(rear==-1)
+		{
+        	cout<<"empty."<<endl;
+    	}
+    	for(i=rear;i>=front;i--)
+		{
+        	cout<<q[i]<<endl;
+    	}
+    	cout<<endl;
+	}
+};
+int main()
+{
+	queue a;
+	int n,x,ch;
+    do
+	{
+        cout<<"1.push"<<endl<<"2.pop"<<endl<<"3.display"<<endl;
+        cout<<"enter your choice: ";
+        cin>>x;
+        switch(x)
+        {
+            case 1: cout<<"Enter an Integer Number: ";
+                    cin>>n;
+                    a.enqueue(n);
+                	break; 
+            case 2: a.dequeue();
+                    break;
+            case 3: a.display();
+                    break;
+            default : cout<<"Wrong Choice!!!"<<endl;
+                 		break;
+        }
+        cout<<"Do you want to continue (1.YES/2.NO)?.... ";
+        cin>>ch;                      
+    }while(ch==1);
+    return 0;
+}
